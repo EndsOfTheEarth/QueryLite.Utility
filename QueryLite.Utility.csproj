@@ -13,7 +13,7 @@
     <Authors>EndsOfTheEarth</Authors>
     <Company />
     <Product />
-    <Description>A utility library for QueryLite.net</Description>
+    <Description>A library of shared classes for QueryLite.net</Description>
     <Copyright>EndOfTheEarth</Copyright>
     <PackageProjectUrl>https://github.com/EndsOfTheEarth/QueryLite.Utility</PackageProjectUrl>
     <RepositoryUrl>https://github.com/EndsOfTheEarth/QueryLite.Utility.git</RepositoryUrl>
