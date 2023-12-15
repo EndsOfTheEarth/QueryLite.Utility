@@ -9,7 +9,7 @@
     <Version>0.1.0</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageId>QueryLite.Utility</PackageId>
-    <Title>Query Lite Utility</Title>
+    <Title>QueryLite Utility</Title>
     <Authors>EndsOfTheEarth</Authors>
     <Company />
     <Product />
