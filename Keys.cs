@@ -28,7 +28,7 @@ namespace QueryLite.Utility {
     /// <summary>
     /// Composite dictionary key
     /// </summary>
-    internal readonly struct Key<K1, K2> : IEquatable<Key<K1, K2>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> {
+    public readonly struct Key<K1, K2> : IEquatable<Key<K1, K2>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> {
 
         public Key(K1 key1, K2 key2) {
             Key1 = key1;
@@ -55,7 +55,7 @@ namespace QueryLite.Utility {
     /// <summary>
     /// Composite dictionary key
     /// </summary>
-    internal readonly struct Key<K1, K2, K3> : IEquatable<Key<K1, K2, K3>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> where K3 : notnull, IEquatable<K3> {
+    public readonly struct Key<K1, K2, K3> : IEquatable<Key<K1, K2, K3>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> where K3 : notnull, IEquatable<K3> {
 
         public Key(K1 key1, K2 key2, K3 key3) {
             Key1 = key1;
@@ -84,7 +84,7 @@ namespace QueryLite.Utility {
     /// <summary>
     /// Composite dictionary key
     /// </summary>
-    internal readonly struct Key<K1, K2, K3, K4> : IEquatable<Key<K1, K2, K3, K4>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> where K3 : notnull, IEquatable<K3> where K4 : notnull, IEquatable<K4> {
+    public readonly struct Key<K1, K2, K3, K4> : IEquatable<Key<K1, K2, K3, K4>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> where K3 : notnull, IEquatable<K3> where K4 : notnull, IEquatable<K4> {
 
         public Key(K1 key1, K2 key2, K3 key3, K4 key4) {
             Key1 = key1;
@@ -115,7 +115,7 @@ namespace QueryLite.Utility {
     /// <summary>
     /// Composite dictionary key
     /// </summary>
-    internal readonly struct Key<K1, K2, K3, K4, K5> : IEquatable<Key<K1, K2, K3, K4, K5>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> where K3 : notnull, IEquatable<K3> where K4 : notnull, IEquatable<K4> where K5 : notnull, IEquatable<K5> {
+    public readonly struct Key<K1, K2, K3, K4, K5> : IEquatable<Key<K1, K2, K3, K4, K5>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> where K3 : notnull, IEquatable<K3> where K4 : notnull, IEquatable<K4> where K5 : notnull, IEquatable<K5> {
 
         public Key(K1 key1, K2 key2, K3 key3, K4 key4, K5 key5) {
             Key1 = key1;
