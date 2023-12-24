@@ -4,6 +4,10 @@ using System.Buffers;
 
 namespace QueryLite.Utility {
 
+    /// <summary>
+    /// Serialisation formatter for the GuidKey<> type. This serialises to 16 bytes which is an improvement from using property attributes on the GuidKey<> struct.
+    /// </summary>
+    /// <typeparam name="TYPE"></typeparam>
     public class GuidKeyFormatter<TYPE> : IMessagePackFormatter<GuidKey<TYPE>> {
 
         public void Serialize(ref MessagePackWriter writer, GuidKey<TYPE> value, MessagePackSerializerOptions options) {
@@ -30,6 +34,10 @@ namespace QueryLite.Utility {
         }
     }
 
+    /// <summary>
+    /// Serialisation formatter for the StringKey<> type.
+    /// </summary>
+    /// <typeparam name="TYPE"></typeparam>
     public class StringKeyFormatter<TYPE> : IMessagePackFormatter<StringKey<TYPE>> {
 
         public void Serialize(ref MessagePackWriter writer, StringKey<TYPE> value, MessagePackSerializerOptions options) {
@@ -55,6 +63,10 @@ namespace QueryLite.Utility {
         }
     }
 
+    /// <summary>
+    /// Serialisation formatter for the ShortKey<> type. This formatter is required as the default formatter does not work with negative values.
+    /// </summary>
+    /// <typeparam name="TYPE"></typeparam>
     public class ShortKeyFormatter<TYPE> : IMessagePackFormatter<ShortKey<TYPE>> {
 
         public void Serialize(ref MessagePackWriter writer, ShortKey<TYPE> value, MessagePackSerializerOptions options) {
@@ -80,6 +92,10 @@ namespace QueryLite.Utility {
         }
     }
 
+    /// <summary>
+    /// Serialisation formatter for the IntKey<> type. This formatter is required as the default formatter does not work with negative values.
+    /// </summary>
+    /// <typeparam name="TYPE"></typeparam>
     public class IntKeyFormatter<TYPE> : IMessagePackFormatter<IntKey<TYPE>> {
 
         public void Serialize(ref MessagePackWriter writer, IntKey<TYPE> value, MessagePackSerializerOptions options) {
@@ -106,6 +122,10 @@ namespace QueryLite.Utility {
         }
     }
 
+    /// <summary>
+    /// Serialisation formatter for the LongKey<> type. This formatter is required as the default formatter does not work with negative values.
+    /// </summary>
+    /// <typeparam name="TYPE"></typeparam>
     public class LongKeyFormatter<TYPE> : IMessagePackFormatter<LongKey<TYPE>> {
 
         public void Serialize(ref MessagePackWriter writer, LongKey<TYPE> value, MessagePackSerializerOptions options) {
@@ -132,6 +152,10 @@ namespace QueryLite.Utility {
         }
     }
 
+    /// <summary>
+    /// Serialisation formatter for the BoolValue<> type.
+    /// </summary>
+    /// <typeparam name="TYPE"></typeparam>
     public class BoolValueFormatter<TYPE> : IMessagePackFormatter<BoolValue<TYPE>> {
 
         public void Serialize(ref MessagePackWriter writer, BoolValue<TYPE> value, MessagePackSerializerOptions options) {
@@ -157,6 +181,10 @@ namespace QueryLite.Utility {
         }
     }
 
+    /// <summary>
+    /// Serialisation formatter for the Bit type.
+    /// </summary>
+    /// <typeparam name="TYPE"></typeparam>
     public class BitFormatter : IMessagePackFormatter<Bit> {
 
         public void Serialize(ref MessagePackWriter writer, Bit value, MessagePackSerializerOptions options) {

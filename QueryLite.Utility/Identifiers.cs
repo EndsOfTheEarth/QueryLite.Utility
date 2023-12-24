@@ -501,14 +501,12 @@ namespace QueryLite.Utility {
         }
     }
 
-    //[MessagePackObject]
     [MessagePackFormatter(formatterType: typeof(BitFormatter))]
     public readonly struct Bit {
 
         public readonly static Bit TRUE = new Bit(true);
         public readonly static Bit FALSE = new Bit(false);
 
-        //[Key(0)]
         public bool Value { get; }
 
         public Bit(bool value) {
