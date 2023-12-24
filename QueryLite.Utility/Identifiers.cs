@@ -57,10 +57,9 @@ namespace QueryLite.Utility {
         bool Value { get; }
     }
 
-    [MessagePackObject]
+    [MessagePackFormatter(formatterType: typeof(GuidKeyFormatter<>))]
     public readonly struct GuidKey<TYPE> : IKeyValue, IGuidType, IEquatable<GuidKey<TYPE>> {
 
-        [Key(0)]
         [JsonPropertyName("Value")]
         [JsonInclude]
         public Guid Value { get; init; }
@@ -86,13 +85,11 @@ namespace QueryLite.Utility {
             return new GuidKey<TYPE>(Guid.Parse(text));
         }
 
-        [IgnoreMember]
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
         public static GuidKey<TYPE> NotSet { get; } = new GuidKey<TYPE>(Guid.Empty);
 
-        [IgnoreMember]
         [JsonIgnore]
         public bool IsValid {
             get { return Value != Guid.Empty; }
@@ -137,10 +134,9 @@ namespace QueryLite.Utility {
         }
     }
 
-    [MessagePackObject]
+    [MessagePackFormatter(formatterType: typeof(StringKeyFormatter<>))]
     public readonly struct StringKey<TYPE> : IKeyValue, IStringType, IEquatable<StringKey<TYPE>> {
 
-        [Key(0)]
         [JsonPropertyName("Value")]
         [JsonInclude]
         public string Value { get; init; }
@@ -157,13 +153,11 @@ namespace QueryLite.Utility {
             return new StringKey<TYPE>(value);
         }
 
-        [IgnoreMember]
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
         public static StringKey<TYPE> NotSet { get; } = new StringKey<TYPE>(string.Empty);
 
-        [IgnoreMember]
         [JsonIgnore]
         public bool IsValid {
             get { return !string.IsNullOrEmpty(Value); }
@@ -208,10 +202,9 @@ namespace QueryLite.Utility {
         }
     }
 
-    [MessagePackObject]
+    [MessagePackFormatter(formatterType: typeof(ShortKeyFormatter<>))]
     public readonly struct ShortKey<TYPE> : IKeyValue, IInt16Type, IEquatable<ShortKey<TYPE>> {
 
-        [Key(0)]
         [JsonPropertyName("Value")]
         [JsonInclude]
         public short Value { get; init; }
@@ -236,13 +229,11 @@ namespace QueryLite.Utility {
             return new ShortKey<TYPE>(short.Parse(text));
         }
 
-        [IgnoreMember]
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
         public static ShortKey<TYPE> NotSet { get; } = new ShortKey<TYPE>(0);
 
-        [IgnoreMember]
         [JsonIgnore]
         public bool IsValid {
             get { return Value > 0; }
@@ -288,10 +279,9 @@ namespace QueryLite.Utility {
         }
     }
 
-    [MessagePackObject]
+    [MessagePackFormatter(formatterType: typeof(IntKeyFormatter<>))]
     public readonly struct IntKey<TYPE> : IKeyValue, IInt32Type, IEquatable<IntKey<TYPE>> {
 
-        [Key(0)]
         [JsonPropertyName("Value")]
         [JsonInclude]
         public int Value { get; init; }
@@ -316,13 +306,11 @@ namespace QueryLite.Utility {
             return new IntKey<TYPE>(int.Parse(text));
         }
 
-        [IgnoreMember]
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
         public static IntKey<TYPE> NotSet { get; } = new IntKey<TYPE>(0);
 
-        [IgnoreMember]
         [JsonIgnore]
         public bool IsValid {
             get { return Value > 0; }
@@ -368,10 +356,9 @@ namespace QueryLite.Utility {
         }
     }
 
-    [MessagePackObject]
+    [MessagePackFormatter(formatterType: typeof(LongKeyFormatter<>))]
     public readonly struct LongKey<TYPE> : IKeyValue, IInt64Type, IEquatable<LongKey<TYPE>> {
 
-        [Key(0)]
         [JsonPropertyName("Value")]
         [JsonInclude]
         public long Value { get; init; }
@@ -395,13 +382,11 @@ namespace QueryLite.Utility {
             return new LongKey<TYPE>(long.Parse(text));
         }
 
-        [IgnoreMember]
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
         public static LongKey<TYPE> NotSet { get; } = new LongKey<TYPE>(0);
 
-        [IgnoreMember]
         [JsonIgnore]
         public bool IsValid {
             get { return Value > 0; }
@@ -447,10 +432,9 @@ namespace QueryLite.Utility {
         }
     }
 
-    [MessagePackObject]
+    [MessagePackFormatter(formatterType: typeof(BoolValueFormatter<>))]
     public readonly struct BoolValue<TYPE> : IKeyValue, IBoolType, IEquatable<BoolValue<TYPE>> {
 
-        [Key(0)]
         [JsonPropertyName("Value")]
         [JsonInclude]
         public bool Value { get; init; }
@@ -471,9 +455,9 @@ namespace QueryLite.Utility {
             return key?.Value;
         }
 
+        [JsonIgnore]
         public bool IsValid => true;
 
-        [IgnoreMember]
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
@@ -517,12 +501,14 @@ namespace QueryLite.Utility {
         }
     }
 
-    [MessagePackObject]
+    //[MessagePackObject]
+    [MessagePackFormatter(formatterType: typeof(BitFormatter))]
     public readonly struct Bit {
 
         public readonly static Bit TRUE = new Bit(true);
         public readonly static Bit FALSE = new Bit(false);
 
+        //[Key(0)]
         public bool Value { get; }
 
         public Bit(bool value) {
