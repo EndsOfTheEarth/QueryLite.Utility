@@ -24,6 +24,25 @@
 using MessagePack;
 using System.Text.Json.Serialization;
 
+namespace QueryLite {
+
+    /// <summary>
+    /// IValue<> interface. Used to support custom identifiers.
+    /// </summary>
+    /// <typeparam name="TYPE"></typeparam>
+    public interface IValue<TYPE> {
+        TYPE Value { get; }
+    }
+
+    /// <summary>
+    /// IValue<> interface. Used to support custom identifiers.
+    /// </summary>
+    /// <typeparam name="TYPE"></typeparam>
+    public interface IValueOf<TYPE, RETURN> {
+        abstract static RETURN ValueOf(TYPE value);
+    }
+}
+
 namespace QueryLite.Utility {
 
     public interface IKeyValue {
