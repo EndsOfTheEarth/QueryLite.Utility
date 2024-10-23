@@ -47,9 +47,15 @@ namespace QueryLite.Utility {
         public bool Equals(Key<K1, K2> other) {
             return Key1.Equals(other.Key1) && Key2.Equals(other.Key2);
         }
+        public static bool operator ==(Key<K1, K2> left, Key<K1, K2> right) {
+            return left.Equals(right);
+        }
+        public static bool operator !=(Key<K1, K2> left, Key<K1, K2> right) {
+            return !(left == right);
+        }
         public override int GetHashCode() {
             return HashCode.Combine(Key1, Key2);
-        }
+        }        
     }
 
     /// <summary>
@@ -75,6 +81,12 @@ namespace QueryLite.Utility {
         }
         public bool Equals(Key<K1, K2, K3> other) {
             return Key1.Equals(other.Key1) && Key2.Equals(other.Key2) && Key3.Equals(other.Key3);
+        }
+        public static bool operator ==(Key<K1, K2, K3> left, Key<K1, K2, K3> right) {
+            return left.Equals(right);
+        }
+        public static bool operator !=(Key<K1, K2, K3> left, Key<K1, K2, K3> right) {
+            return !(left == right);
         }
         public override int GetHashCode() {
             return HashCode.Combine(Key1, Key2, Key3);
@@ -106,6 +118,12 @@ namespace QueryLite.Utility {
         }
         public bool Equals(Key<K1, K2, K3, K4> other) {
             return Key1.Equals(other.Key1) && Key2.Equals(other.Key2) && Key3.Equals(other.Key3) && Key4.Equals(other.Key4);
+        }
+        public static bool operator ==(Key<K1, K2, K3, K4> left, Key<K1, K2, K3, K4> right) {
+            return left.Equals(right);
+        }
+        public static bool operator !=(Key<K1, K2, K3, K4> left, Key<K1, K2, K3, K4> right) {
+            return !(left == right);
         }
         public override int GetHashCode() {
             return HashCode.Combine(Key1, Key2, Key3, Key4);
@@ -139,6 +157,12 @@ namespace QueryLite.Utility {
         }
         public bool Equals(Key<K1, K2, K3, K4, K5> other) {
             return Key1.Equals(other.Key1) && Key2.Equals(other.Key2) && Key3.Equals(other.Key3) && Key4.Equals(other.Key4) && Key5.Equals(other.Key5);
+        }
+        public static bool operator ==(Key<K1, K2, K3, K4, K5> left, Key<K1, K2, K3, K4, K5> right) {
+            return left.Equals(right);
+        }
+        public static bool operator !=(Key<K1, K2, K3, K4, K5> left, Key<K1, K2, K3, K4, K5> right) {
+            return !(left == right);
         }
         public override int GetHashCode() {
             return HashCode.Combine(Key1, Key2, Key3, Key4, Key5);
