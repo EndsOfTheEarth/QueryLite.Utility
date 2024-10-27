@@ -23,27 +23,27 @@
  **/
 namespace QueryLite {
 
-    public abstract record ARow {
+    public abstract record ARowRecord {
 
     }
 
-    public class Record {
+    public class RowState<ROW> where ROW : notnull, ARowRecord {
 
-        public Record(ARow original, ARow current, RecordState state = RecordState.None) {
+        public RowState(ROW original, ROW current, RowUpdateStatus state = RowUpdateStatus.None) {
             Original = original;
             Current = current;
             State = state;
         }
 
-        public ARow Original { get; }
-        public ARow Current { get; }
+        public ROW Original { get; }
+        public ROW Current { get; }
 
-        public RecordState State { get; }
+        public RowUpdateStatus State { get; }
 
         public bool HasChanged => !Original.Equals(Current);
     }
 
-    public enum RecordState {
+    public enum RowUpdateStatus {
         None,
         Insert,
         Update,
