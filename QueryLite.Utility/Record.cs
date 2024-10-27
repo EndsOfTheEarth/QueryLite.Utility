@@ -23,16 +23,20 @@
  **/
 namespace QueryLite {
 
-    public class Record<TYPE> where TYPE : IEquatable<TYPE> {
+    public abstract record ARow {
 
-        public Record(TYPE original, TYPE current, RecordState state = RecordState.None) {
+    }
+
+    public class Record {
+
+        public Record(ARow original, ARow current, RecordState state = RecordState.None) {
             Original = original;
             Current = current;
             State = state;
         }
 
-        public TYPE Original { get; }
-        public TYPE Current { get; }
+        public ARow Original { get; }
+        public ARow Current { get; }
 
         public RecordState State { get; }
 
