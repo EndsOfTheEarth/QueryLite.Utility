@@ -26,23 +26,6 @@ using System.Text.Json.Serialization;
 
 namespace QueryLite {
 
-    /// <summary>
-    /// IValue<> interface. Used to support custom identifiers.
-    /// </summary>
-    /// <typeparam name="TYPE"></typeparam>
-    [Obsolete(message: $"Replaced by the ICustomType<,> interface")]
-    public interface IValue<TYPE> {
-        TYPE Value { get; }
-    }
-
-    /// <summary>
-    /// IValue<> interface. Used to support custom identifiers.
-    /// </summary>
-    [Obsolete(message: $"Replaced by the ICustomType<,> interface")]
-    public interface IValueOf<TYPE, RETURN> {
-        abstract static RETURN ValueOf(TYPE value);
-    }
-
     public interface ICustomType<TYPE, RETURN> {
 
         /// <summary>
