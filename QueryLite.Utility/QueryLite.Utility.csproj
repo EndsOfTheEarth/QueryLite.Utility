@@ -7,7 +7,7 @@
     <AssemblyVersion>0.1.6</AssemblyVersion>
     <FileVersion>0.1.6</FileVersion>
     <Version>0.1.6</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageId>QueryLite.Utility</PackageId>
     <Title>QueryLite Utility</Title>
     <Authors>EndsOfTheEarth</Authors>
