@@ -30,6 +30,7 @@ namespace QueryLite {
     /// IValue<> interface. Used to support custom identifiers.
     /// </summary>
     /// <typeparam name="TYPE"></typeparam>
+    [Obsolete(message: $"Replaced by the ICustomType<,> interface")]
     public interface IValue<TYPE> {
         TYPE Value { get; }
     }
@@ -37,8 +38,21 @@ namespace QueryLite {
     /// <summary>
     /// IValue<> interface. Used to support custom identifiers.
     /// </summary>
-    /// <typeparam name="TYPE"></typeparam>
+    [Obsolete(message: $"Replaced by the ICustomType<,> interface")]
     public interface IValueOf<TYPE, RETURN> {
+        abstract static RETURN ValueOf(TYPE value);
+    }
+
+    public interface ICustomType<TYPE, RETURN> {
+
+        /// <summary>
+        /// Returns the underlying value of the custom type.
+        /// </summary>
+        TYPE Value { get; }
+
+        /// <summary>
+        /// Returns a custom type for the given underlying value.
+        /// </summary>
         abstract static RETURN ValueOf(TYPE value);
     }
 }
