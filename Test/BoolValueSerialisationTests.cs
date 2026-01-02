@@ -5,16 +5,16 @@ namespace QueryLite.Utility {
     [TestClass]
     public class BoolValueSerialisationTests {
 
-        private interface MyType { }
+        private interface IMyType { }
 
         [TestMethod]
         public void BoolValue() {
 
-            BoolValue<MyType> key1 = new BoolValue<MyType>(true);
+            BoolValue<IMyType> key1 = new(true);
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            BoolValue<MyType> key2 = MessagePackSerializer.Deserialize<BoolValue<MyType>>(bytes);
+            BoolValue<IMyType> key2 = MessagePackSerializer.Deserialize<BoolValue<IMyType>>(bytes);
 
             Assert.AreEqual(key1, key2);
         }
@@ -22,11 +22,11 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void NullableBoolValue() {
 
-            BoolValue<MyType>? key1 = new BoolValue<MyType>(true);
+            BoolValue<IMyType>? key1 = new(true);
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            BoolValue<MyType>? key2 = MessagePackSerializer.Deserialize<BoolValue<MyType>?>(bytes);
+            BoolValue<IMyType>? key2 = MessagePackSerializer.Deserialize<BoolValue<IMyType>?>(bytes);
 
             Assert.AreEqual(key1, key2);
         }
@@ -34,11 +34,11 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void EmptyBoolValue() {
 
-            BoolValue<MyType> key1 = new BoolValue<MyType>(false);
+            BoolValue<IMyType> key1 = new(false);
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            BoolValue<MyType> key2 = MessagePackSerializer.Deserialize<BoolValue<MyType>>(bytes);
+            BoolValue<IMyType> key2 = MessagePackSerializer.Deserialize<BoolValue<IMyType>>(bytes);
 
             Assert.AreEqual(key1, key2);
         }
@@ -46,11 +46,11 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void NullBoolValue() {
 
-            BoolValue<MyType>? key1 = null;
+            BoolValue<IMyType>? key1 = null;
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            BoolValue<MyType>? key2 = MessagePackSerializer.Deserialize<BoolValue<MyType>?>(bytes);
+            BoolValue<IMyType>? key2 = MessagePackSerializer.Deserialize<BoolValue<IMyType>?>(bytes);
 
             Assert.AreEqual(key1, key2);
         }        

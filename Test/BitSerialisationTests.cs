@@ -8,7 +8,7 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void Bit() {
 
-            Bit key1 = new Bit(true);
+            Bit key1 = new(true);
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
@@ -20,7 +20,7 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void NullableBit() {
 
-            Bit? key1 = new Bit(true);
+            Bit? key1 = new(true);
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
@@ -32,7 +32,7 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void EmptyBit() {
 
-            Bit key1 = new Bit(false);
+            Bit key1 = new(false);
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 

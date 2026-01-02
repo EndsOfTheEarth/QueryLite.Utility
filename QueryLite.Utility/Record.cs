@@ -27,18 +27,12 @@ namespace QueryLite {
 
     }
 
-    public class RowState<ROW> where ROW : notnull, ARowRecord {
+    public class RowState<ROW>(ROW original, ROW current, RowUpdateStatus state = RowUpdateStatus.None) where ROW : notnull, ARowRecord {
+        
+        public ROW Original { get; } = original;
+        public ROW Current { get; } = current;
 
-        public RowState(ROW original, ROW current, RowUpdateStatus state = RowUpdateStatus.None) {
-            Original = original;
-            Current = current;
-            State = state;
-        }
-
-        public ROW Original { get; }
-        public ROW Current { get; }
-
-        public RowUpdateStatus State { get; }
+        public RowUpdateStatus State { get; } = state;
 
         public bool HasChanged => !Original.Equals(Current);
     }

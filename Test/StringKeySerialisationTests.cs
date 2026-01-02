@@ -5,16 +5,16 @@ namespace QueryLite.Utility {
     [TestClass]
     public class StringKeySerialisationTests {
 
-        private interface MyType { }
+        private interface IMyType { }
 
         [TestMethod]
         public void StringKey() {
 
-            StringKey<MyType> key1 = new StringKey<MyType>("{725D9F52-792C-47AA-8C20-284B8AEE702E}");
+            StringKey<IMyType> key1 = new("{725D9F52-792C-47AA-8C20-284B8AEE702E}");
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            StringKey<MyType> key2 = MessagePackSerializer.Deserialize<StringKey<MyType>>(bytes);
+            StringKey<IMyType> key2 = MessagePackSerializer.Deserialize<StringKey<IMyType>>(bytes);
 
             Assert.AreEqual(key1, key2);
         }
@@ -22,11 +22,11 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void NullableStringKey() {
 
-            StringKey<MyType>? key1 = new StringKey<MyType>("{72284F6B-4A9D-490D-B721-7F2DDB43491C}");
+            StringKey<IMyType>? key1 = new("{72284F6B-4A9D-490D-B721-7F2DDB43491C}");
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            StringKey<MyType>? key2 = MessagePackSerializer.Deserialize<StringKey<MyType>?>(bytes);
+            StringKey<IMyType>? key2 = MessagePackSerializer.Deserialize<StringKey<IMyType>?>(bytes);
 
             Assert.AreEqual(key1, key2);
         }
@@ -34,11 +34,11 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void EmptyStringKey() {
 
-            StringKey<MyType> key1 = new StringKey<MyType>(string.Empty);
+            StringKey<IMyType> key1 = new(string.Empty);
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            StringKey<MyType> key2 = MessagePackSerializer.Deserialize<StringKey<MyType>>(bytes);
+            StringKey<IMyType> key2 = MessagePackSerializer.Deserialize<StringKey<IMyType>>(bytes);
 
             Assert.AreEqual(key1, key2);
         }
@@ -46,11 +46,11 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void NullStringKey() {
 
-            StringKey<MyType>? key1 = null;
+            StringKey<IMyType>? key1 = null;
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            StringKey<MyType>? key2 = MessagePackSerializer.Deserialize<StringKey<MyType>?>(bytes);
+            StringKey<IMyType>? key2 = MessagePackSerializer.Deserialize<StringKey<IMyType>?>(bytes);
 
             Assert.AreEqual(key1, key2);
         }        

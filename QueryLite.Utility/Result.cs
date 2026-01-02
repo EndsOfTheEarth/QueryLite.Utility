@@ -30,13 +30,13 @@ namespace QueryLite.Utility {
 
         public Result(bool successful) {
             Successful = successful;
-            Messages = Enumerable.Empty<string>();
+            Messages = [];
         }
         public Result(bool successful, IEnumerable<string> messages) {
             Successful = successful;
             Messages = messages;
         }
-        public static Result Success => new Result(successful: true);
-        public static Result Failure(IEnumerable<string> messages) => new Result(successful: false, messages: messages);
+        public static Result Success => new(successful: true);
+        public static Result Failure(IEnumerable<string> messages) => new(successful: false, messages: messages);
     }
 }

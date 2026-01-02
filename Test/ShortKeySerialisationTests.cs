@@ -5,16 +5,16 @@ namespace QueryLite.Utility {
     [TestClass]
     public class ShortKeySerialisationTests {
 
-        private interface MyType { }
+        private interface IMyType { }
 
         [TestMethod]
         public void ShortKey() {
 
-            ShortKey<MyType> key1 = new ShortKey<MyType>(155);
+            ShortKey<IMyType> key1 = new(155);
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            ShortKey<MyType> key2 = MessagePackSerializer.Deserialize<ShortKey<MyType>>(bytes);
+            ShortKey<IMyType> key2 = MessagePackSerializer.Deserialize<ShortKey<IMyType>>(bytes);
 
             Assert.AreEqual(key1, key2);
         }
@@ -22,11 +22,11 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void NullableShortKey() {
 
-            ShortKey<MyType>? key1 = new ShortKey<MyType>(short.MaxValue);
+            ShortKey<IMyType>? key1 = new(short.MaxValue);
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            ShortKey<MyType>? key2 = MessagePackSerializer.Deserialize<ShortKey<MyType>?>(bytes);
+            ShortKey<IMyType>? key2 = MessagePackSerializer.Deserialize<ShortKey<IMyType>?>(bytes);
 
             Assert.AreEqual(key1, key2);
         }
@@ -34,11 +34,11 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void EmptyShortKey() {
 
-            ShortKey<MyType> key1 = new ShortKey<MyType>(short.MinValue);
+            ShortKey<IMyType> key1 = new(short.MinValue);
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            ShortKey<MyType> key2 = MessagePackSerializer.Deserialize<ShortKey<MyType>>(bytes);
+            ShortKey<IMyType> key2 = MessagePackSerializer.Deserialize<ShortKey<IMyType>>(bytes);
 
             Assert.AreEqual(key1, key2);
         }
@@ -46,11 +46,11 @@ namespace QueryLite.Utility {
         [TestMethod]
         public void NullShortKey() {
 
-            ShortKey<MyType>? key1 = null;
+            ShortKey<IMyType>? key1 = null;
 
             byte[] bytes = MessagePackSerializer.Serialize(key1);
 
-            ShortKey<MyType>? key2 = MessagePackSerializer.Deserialize<ShortKey<MyType>?>(bytes);
+            ShortKey<IMyType>? key2 = MessagePackSerializer.Deserialize<ShortKey<IMyType>?>(bytes);
 
             Assert.AreEqual(key1, key2);
         }        

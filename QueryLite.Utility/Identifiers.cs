@@ -54,6 +54,7 @@ namespace QueryLite.Utility {
     public interface IKeyValue {
 
         object GetValueAsObject();
+
         bool IsValid { get; }
     }
 
@@ -89,36 +90,26 @@ namespace QueryLite.Utility {
         [JsonInclude]
         public Guid Value { get; init; }
 
-        object IKeyValue.GetValueAsObject() {
-            return Value;
-        }
+        object IKeyValue.GetValueAsObject() => Value;
 
         public GuidKey() { }
         public GuidKey(Guid value) {
             Value = value;
         }
 
-        public static GuidKey<TYPE> ValueOf(Guid value) {
-            return new GuidKey<TYPE>(value);
-        }
+        public static GuidKey<TYPE> ValueOf(Guid value) => new(value);
 
-        public static Guid? ToGuid(GuidKey<TYPE>? key) {
-            return key?.Value;
-        }
+        public static Guid? ToGuid(GuidKey<TYPE>? key) => key?.Value;
 
-        public static GuidKey<TYPE> Parse(string text) {
-            return new GuidKey<TYPE>(Guid.Parse(text));
-        }
+        public static GuidKey<TYPE> Parse(string text) => new(Guid.Parse(text));
 
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
-        public static GuidKey<TYPE> NotSet { get; } = new GuidKey<TYPE>(Guid.Empty);
+        public static GuidKey<TYPE> NotSet { get; } = new(Guid.Empty);
 
         [JsonIgnore]
-        public bool IsValid {
-            get { return Value != Guid.Empty; }
-        }
+        public bool IsValid => Value != Guid.Empty;
 
         public static bool operator ==(GuidKey<TYPE>? pA, GuidKey<TYPE>? pB) {
 
@@ -148,45 +139,32 @@ namespace QueryLite.Utility {
             }
             return false;
         }
-        public override int GetHashCode() {
-            return Value.GetHashCode();
-        }
-        public override string ToString() {
-            return Value.ToString() ?? string.Empty;
-        }
-        public bool Equals(GuidKey<TYPE> other) {
-            return Value == other.Value;
-        }
+        public override int GetHashCode() => Value.GetHashCode();
+
+        public override string ToString() => Value.ToString() ?? "";
+
+        public bool Equals(GuidKey<TYPE> other) => Value == other.Value;
     }
 
     [MessagePackFormatter(formatterType: typeof(StringKeyFormatter<>))]
-    public readonly struct StringKey<TYPE> : IKeyValue, IStringType, IEquatable<StringKey<TYPE>> {
+    public readonly struct StringKey<TYPE>(string value) : IKeyValue, IStringType, IEquatable<StringKey<TYPE>> {
 
         [JsonPropertyName("Value")]
         [JsonInclude]
-        public string Value { get; init; }
+        public string Value { get; init; } = value;
 
-        object IKeyValue.GetValueAsObject() {
-            return Value;
-        }
+        object IKeyValue.GetValueAsObject() => Value;
 
-        public StringKey(string value) {
-            Value = value;
-        }
-
-        public static StringKey<TYPE> ValueOf(string value) {
-            return new StringKey<TYPE>(value);
-        }
+        public static StringKey<TYPE> ValueOf(string value) => new(value);
 
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
-        public static StringKey<TYPE> NotSet { get; } = new StringKey<TYPE>(string.Empty);
+        public static StringKey<TYPE> NotSet { get; } = new("");
 
         [JsonIgnore]
-        public bool IsValid {
-            get { return !string.IsNullOrEmpty(Value); }
-        }
+        public bool IsValid => !string.IsNullOrEmpty(Value);
+
         public static bool operator ==(StringKey<TYPE>? pA, StringKey<TYPE>? pB) {
 
             if(pA is null && pB is null) {
@@ -215,54 +193,35 @@ namespace QueryLite.Utility {
             }
             return false;
         }
-        public override int GetHashCode() {
-            return Value.GetHashCode();
-        }
-        public override string ToString() {
-            return Value ?? string.Empty;
-        }
+        public override int GetHashCode() => Value.GetHashCode();
 
-        public bool Equals(StringKey<TYPE> other) {
-            return Value.CompareTo(other.Value) == 0;
-        }
+        public override string ToString() => Value ?? "";
+
+        public bool Equals(StringKey<TYPE> other) => Value.CompareTo(other.Value) == 0;
     }
 
     [MessagePackFormatter(formatterType: typeof(ShortKeyFormatter<>))]
-    public readonly struct ShortKey<TYPE> : IKeyValue, IInt16Type, IEquatable<ShortKey<TYPE>> {
+    public readonly struct ShortKey<TYPE>(short value) : IKeyValue, IInt16Type, IEquatable<ShortKey<TYPE>> {
 
         [JsonPropertyName("Value")]
         [JsonInclude]
-        public short Value { get; init; }
+        public short Value { get; init; } = value;
 
-        object IKeyValue.GetValueAsObject() {
-            return Value;
-        }
+        object IKeyValue.GetValueAsObject() => Value;
 
-        public ShortKey(short value) {
-            Value = value;
-        }
+        public static ShortKey<TYPE> ValueOf(short value) => new(value);
 
-        public static ShortKey<TYPE> ValueOf(short value) {
-            return new ShortKey<TYPE>(value);
-        }
+        public static short? ToShort(ShortKey<TYPE>? key) => key?.Value;
 
-        public static short? ToShort(ShortKey<TYPE>? key) {
-            return key?.Value;
-        }
-
-        public static ShortKey<TYPE> Parse(string text) {
-            return new ShortKey<TYPE>(short.Parse(text));
-        }
+        public static ShortKey<TYPE> Parse(string text) => new(short.Parse(text));
 
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
-        public static ShortKey<TYPE> NotSet { get; } = new ShortKey<TYPE>(0);
+        public static ShortKey<TYPE> NotSet { get; } = new(0);
 
         [JsonIgnore]
-        public bool IsValid {
-            get { return Value > 0; }
-        }
+        public bool IsValid => Value > 0;
 
         public static bool operator ==(ShortKey<TYPE>? pA, ShortKey<TYPE>? pB) {
 
@@ -292,54 +251,35 @@ namespace QueryLite.Utility {
             }
             return false;
         }
-        public override int GetHashCode() {
-            return Value.GetHashCode();
-        }
-        public override string ToString() {
-            return Value.ToString() ?? string.Empty;
-        }
+        public override int GetHashCode() => Value.GetHashCode();
 
-        public bool Equals(ShortKey<TYPE> other) {
-            return Value == other.Value;
-        }
+        public override string ToString() => Value.ToString() ?? "";
+
+        public bool Equals(ShortKey<TYPE> other) => Value == other.Value;
     }
 
     [MessagePackFormatter(formatterType: typeof(IntKeyFormatter<>))]
-    public readonly struct IntKey<TYPE> : IKeyValue, IInt32Type, IEquatable<IntKey<TYPE>> {
+    public readonly struct IntKey<TYPE>(int value) : IKeyValue, IInt32Type, IEquatable<IntKey<TYPE>> {
 
         [JsonPropertyName("Value")]
         [JsonInclude]
-        public int Value { get; init; }
+        public int Value { get; init; } = value;
 
-        object IKeyValue.GetValueAsObject() {
-            return Value;
-        }
+        object IKeyValue.GetValueAsObject() => Value;
 
-        public IntKey(int value) {
-            Value = value;
-        }
+        public static IntKey<TYPE> ValueOf(int value) => new(value);
 
-        public static IntKey<TYPE> ValueOf(int value) {
-            return new IntKey<TYPE>(value);
-        }
+        public static int? ToInt(IntKey<TYPE>? key) => key?.Value;
 
-        public static int? ToInt(IntKey<TYPE>? key) {
-            return key?.Value;
-        }
-
-        public static IntKey<TYPE> Parse(string text) {
-            return new IntKey<TYPE>(int.Parse(text));
-        }
+        public static IntKey<TYPE> Parse(string text) => new(int.Parse(text));
 
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
-        public static IntKey<TYPE> NotSet { get; } = new IntKey<TYPE>(0);
+        public static IntKey<TYPE> NotSet { get; } = new(0);
 
         [JsonIgnore]
-        public bool IsValid {
-            get { return Value > 0; }
-        }
+        public bool IsValid => Value > 0;
 
         public static bool operator ==(IntKey<TYPE>? pA, IntKey<TYPE>? pB) {
 
@@ -369,53 +309,35 @@ namespace QueryLite.Utility {
             }
             return false;
         }
-        public override int GetHashCode() {
-            return Value.GetHashCode();
-        }
-        public override string ToString() {
-            return Value.ToString() ?? string.Empty;
-        }
+        public override int GetHashCode() => Value.GetHashCode();
 
-        public bool Equals(IntKey<TYPE> other) {
-            return Value == other.Value;
-        }
+        public override string ToString() => Value.ToString() ?? "";
+
+        public bool Equals(IntKey<TYPE> other) => Value == other.Value;
     }
 
     [MessagePackFormatter(formatterType: typeof(LongKeyFormatter<>))]
-    public readonly struct LongKey<TYPE> : IKeyValue, IInt64Type, IEquatable<LongKey<TYPE>> {
+    public readonly struct LongKey<TYPE>(long value) : IKeyValue, IInt64Type, IEquatable<LongKey<TYPE>> {
 
         [JsonPropertyName("Value")]
         [JsonInclude]
-        public long Value { get; init; }
+        public long Value { get; init; } = value;
 
-        object IKeyValue.GetValueAsObject() {
-            return Value;
-        }
+        object IKeyValue.GetValueAsObject() => Value;
 
-        public LongKey(long value) {
-            Value = value;
-        }
+        public static LongKey<TYPE> ValueOf(long value) => new(value);
+        
+        public static long? ToLong(LongKey<TYPE>? key) => key?.Value;
 
-        public static LongKey<TYPE> ValueOf(long value) {
-            return new LongKey<TYPE>(value);
-        }
-        public static long? ToLong(LongKey<TYPE>? key) {
-            return key?.Value;
-        }
-
-        public static LongKey<TYPE> Parse(string text) {
-            return new LongKey<TYPE>(long.Parse(text));
-        }
+        public static LongKey<TYPE> Parse(string text) => new(long.Parse(text));
 
         [JsonIgnore]
         public Type DataType => typeof(TYPE);
 
-        public static LongKey<TYPE> NotSet { get; } = new LongKey<TYPE>(0);
+        public static LongKey<TYPE> NotSet { get; } = new(0);
 
         [JsonIgnore]
-        public bool IsValid {
-            get { return Value > 0; }
-        }
+        public bool IsValid => Value > 0;
 
         public static bool operator ==(LongKey<TYPE>? pA, LongKey<TYPE>? pB) {
 
@@ -445,40 +367,25 @@ namespace QueryLite.Utility {
             }
             return false;
         }
-        public override int GetHashCode() {
-            return Value.GetHashCode();
-        }
-        public override string ToString() {
-            return Value.ToString() ?? string.Empty;
-        }
+        public override int GetHashCode() => Value.GetHashCode();
+        
+        public override string ToString() => Value.ToString() ?? "";
 
-        public bool Equals(LongKey<TYPE> other) {
-            return Value == other.Value;
-        }
+        public bool Equals(LongKey<TYPE> other) => Value == other.Value;
     }
 
     [MessagePackFormatter(formatterType: typeof(BoolValueFormatter<>))]
-    public readonly struct BoolValue<TYPE> : IKeyValue, IBoolType, IEquatable<BoolValue<TYPE>> {
+    public readonly struct BoolValue<TYPE>(bool value) : IKeyValue, IBoolType, IEquatable<BoolValue<TYPE>> {
 
         [JsonPropertyName("Value")]
         [JsonInclude]
-        public bool Value { get; init; }
+        public bool Value { get; init; } = value;
 
-        object IKeyValue.GetValueAsObject() {
-            return Value;
-        }
+        object IKeyValue.GetValueAsObject() => Value;
 
-        public BoolValue(bool value) {
-            Value = value;
-        }
+        public static BoolValue<TYPE> ValueOf(bool value) => new(value);
 
-        public static BoolValue<TYPE> ValueOf(bool value) {
-            return new BoolValue<TYPE>(value);
-        }
-
-        public static bool? ToBool(BoolValue<TYPE>? key) {
-            return key?.Value;
-        }
+        public static bool? ToBool(BoolValue<TYPE>? key) => key?.Value;
 
         [JsonIgnore]
         public bool IsValid => true;
@@ -514,34 +421,23 @@ namespace QueryLite.Utility {
             }
             return false;
         }
-        public override int GetHashCode() {
-            return Value.GetHashCode();
-        }
-        public override string ToString() {
-            return Value.ToString() ?? string.Empty;
-        }
+        public override int GetHashCode() => Value.GetHashCode();
 
-        public bool Equals(BoolValue<TYPE> other) {
-            return Value == other.Value;
-        }
+        public override string ToString() => Value.ToString() ?? "";
+
+        public bool Equals(BoolValue<TYPE> other) => Value == other.Value;
     }
 
     [MessagePackFormatter(formatterType: typeof(BitFormatter))]
-    public readonly struct Bit {
+    public readonly struct Bit(bool value) {
 
-        public readonly static Bit TRUE = new Bit(true);
-        public readonly static Bit FALSE = new Bit(false);
+        public readonly static Bit TRUE = new(true);
+        public readonly static Bit FALSE = new(false);
 
-        public bool Value { get; }
-
-        public Bit(bool value) {
-            Value = value;
-        }
+        public bool Value { get; } = value;
 
         public static Bit ValueOf(bool value) => value ? TRUE : FALSE;
 
-        public override string ToString() {
-            return Value ? "1" : "0";
-        }
+        public override string ToString() => Value ? "1" : "0";
     }
 }
