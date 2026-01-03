@@ -21,8 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  **/
-using MessagePack;
-
 namespace QueryLite {
 
     /// <summary>
@@ -50,7 +48,6 @@ namespace QueryLite {
 
 namespace QueryLite.Utility {
 
-    [MessagePackFormatter(formatterType: typeof(BitFormatter))]
     public readonly struct Bit(bool value) {
 
         public readonly static Bit TRUE = new(true);

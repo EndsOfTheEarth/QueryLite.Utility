@@ -28,14 +28,11 @@ namespace QueryLite.Utility {
     /// <summary>
     /// Composite dictionary key
     /// </summary>
-    public readonly struct Key<K1, K2> : IEquatable<Key<K1, K2>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> {
+    public readonly struct Key<K1, K2>(K1 key1, K2 key2) : IEquatable<Key<K1, K2>>
+                                                           where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> {
 
-        public Key(K1 key1, K2 key2) {
-            Key1 = key1;
-            Key2 = key2;
-        }
-        public K1 Key1 { get; }
-        public K2 Key2 { get; }
+        public K1 Key1 { get; } = key1;
+        public K2 Key2 { get; } = key2;
 
         public override bool Equals([NotNullWhen(true)] object? obj) {
 
@@ -61,26 +58,27 @@ namespace QueryLite.Utility {
     /// <summary>
     /// Composite dictionary key
     /// </summary>
-    public readonly struct Key<K1, K2, K3> : IEquatable<Key<K1, K2, K3>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> where K3 : notnull, IEquatable<K3> {
-
-        public Key(K1 key1, K2 key2, K3 key3) {
-            Key1 = key1;
-            Key2 = key2;
-            Key3 = key3;
-        }
-        public K1 Key1 { get; }
-        public K2 Key2 { get; }
-        public K3 Key3 { get; }
+    public readonly struct Key<K1, K2, K3>(K1 key1, K2 key2, K3 key3) : IEquatable<Key<K1, K2, K3>>
+                                                                        where K1 : notnull, IEquatable<K1>
+                                                                        where K2 : notnull, IEquatable<K2>
+                                                                        where K3 : notnull, IEquatable<K3> {
+        public K1 Key1 { get; } = key1;
+        public K2 Key2 { get; } = key2;
+        public K3 Key3 { get; } = key3;
 
         public override bool Equals([NotNullWhen(true)] object? obj) {
 
             if(obj is Key<K1, K2, K3> other) {
-                return Key1.Equals(other.Key1) && Key2.Equals(other.Key2) && Key3.Equals(other.Key3);
+                return Key1.Equals(other.Key1) &&
+                       Key2.Equals(other.Key2) &&
+                       Key3.Equals(other.Key3);
             }
             return false;
         }
         public bool Equals(Key<K1, K2, K3> other) {
-            return Key1.Equals(other.Key1) && Key2.Equals(other.Key2) && Key3.Equals(other.Key3);
+            return Key1.Equals(other.Key1) &&
+                   Key2.Equals(other.Key2) &&
+                   Key3.Equals(other.Key3);
         }
         public static bool operator ==(Key<K1, K2, K3> left, Key<K1, K2, K3> right) {
             return left.Equals(right);
@@ -96,28 +94,31 @@ namespace QueryLite.Utility {
     /// <summary>
     /// Composite dictionary key
     /// </summary>
-    public readonly struct Key<K1, K2, K3, K4> : IEquatable<Key<K1, K2, K3, K4>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> where K3 : notnull, IEquatable<K3> where K4 : notnull, IEquatable<K4> {
-
-        public Key(K1 key1, K2 key2, K3 key3, K4 key4) {
-            Key1 = key1;
-            Key2 = key2;
-            Key3 = key3;
-            Key4 = key4;
-        }
-        public K1 Key1 { get; }
-        public K2 Key2 { get; }
-        public K3 Key3 { get; }
-        public K4 Key4 { get; }
+    public readonly struct Key<K1, K2, K3, K4>(K1 key1, K2 key2, K3 key3, K4 key4) : IEquatable<Key<K1, K2, K3, K4>>
+                                                                                     where K1 : notnull, IEquatable<K1>
+                                                                                     where K2 : notnull, IEquatable<K2>
+                                                                                     where K3 : notnull, IEquatable<K3>
+                                                                                     where K4 : notnull, IEquatable<K4> {
+        public K1 Key1 { get; } = key1;
+        public K2 Key2 { get; } = key2;
+        public K3 Key3 { get; } = key3;
+        public K4 Key4 { get; } = key4;
 
         public override bool Equals([NotNullWhen(true)] object? obj) {
 
             if(obj is Key<K1, K2, K3, K4> other) {
-                return Key1.Equals(other.Key1) && Key2.Equals(other.Key2) && Key3.Equals(other.Key3) && Key4.Equals(other.Key4);
+                return Key1.Equals(other.Key1) &&
+                       Key2.Equals(other.Key2) &&
+                       Key3.Equals(other.Key3) &&
+                       Key4.Equals(other.Key4);
             }
             return false;
         }
         public bool Equals(Key<K1, K2, K3, K4> other) {
-            return Key1.Equals(other.Key1) && Key2.Equals(other.Key2) && Key3.Equals(other.Key3) && Key4.Equals(other.Key4);
+            return Key1.Equals(other.Key1) &&
+                   Key2.Equals(other.Key2) &&
+                   Key3.Equals(other.Key3) &&
+                   Key4.Equals(other.Key4);
         }
         public static bool operator ==(Key<K1, K2, K3, K4> left, Key<K1, K2, K3, K4> right) {
             return left.Equals(right);
@@ -133,30 +134,36 @@ namespace QueryLite.Utility {
     /// <summary>
     /// Composite dictionary key
     /// </summary>
-    public readonly struct Key<K1, K2, K3, K4, K5> : IEquatable<Key<K1, K2, K3, K4, K5>> where K1 : notnull, IEquatable<K1> where K2 : notnull, IEquatable<K2> where K3 : notnull, IEquatable<K3> where K4 : notnull, IEquatable<K4> where K5 : notnull, IEquatable<K5> {
+    public readonly struct Key<K1, K2, K3, K4, K5>(K1 key1, K2 key2, K3 key3, K4 key4, K5 key5) : IEquatable<Key<K1, K2, K3, K4, K5>>
+                                                                                                  where K1 : notnull, IEquatable<K1>
+                                                                                                  where K2 : notnull, IEquatable<K2>
+                                                                                                  where K3 : notnull, IEquatable<K3>
+                                                                                                  where K4 : notnull, IEquatable<K4>
+                                                                                                  where K5 : notnull, IEquatable<K5> {
 
-        public Key(K1 key1, K2 key2, K3 key3, K4 key4, K5 key5) {
-            Key1 = key1;
-            Key2 = key2;
-            Key3 = key3;
-            Key4 = key4;
-            Key5 = key5;
-        }
-        public K1 Key1 { get; }
-        public K2 Key2 { get; }
-        public K3 Key3 { get; }
-        public K4 Key4 { get; }
-        public K5 Key5 { get; }
+        public K1 Key1 { get; } = key1;
+        public K2 Key2 { get; } = key2;
+        public K3 Key3 { get; } = key3;
+        public K4 Key4 { get; } = key4;
+        public K5 Key5 { get; } = key5;
 
         public override bool Equals([NotNullWhen(true)] object? obj) {
 
             if(obj is Key<K1, K2, K3, K4, K5> other) {
-                return Key1.Equals(other.Key1) && Key2.Equals(other.Key2) && Key3.Equals(other.Key3) && Key4.Equals(other.Key4) && Key5.Equals(other.Key5);
+                return Key1.Equals(other.Key1) &&
+                       Key2.Equals(other.Key2) &&
+                       Key3.Equals(other.Key3) &&
+                       Key4.Equals(other.Key4) &&
+                       Key5.Equals(other.Key5);
             }
             return false;
         }
         public bool Equals(Key<K1, K2, K3, K4, K5> other) {
-            return Key1.Equals(other.Key1) && Key2.Equals(other.Key2) && Key3.Equals(other.Key3) && Key4.Equals(other.Key4) && Key5.Equals(other.Key5);
+            return Key1.Equals(other.Key1) &&
+                   Key2.Equals(other.Key2) &&
+                   Key3.Equals(other.Key3) &&
+                   Key4.Equals(other.Key4) &&
+                   Key5.Equals(other.Key5);
         }
         public static bool operator ==(Key<K1, K2, K3, K4, K5> left, Key<K1, K2, K3, K4, K5> right) {
             return left.Equals(right);
